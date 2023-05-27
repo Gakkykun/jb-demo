@@ -275,7 +275,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/Gakkykun/jb-demo/edit/main/book/GeoPython_2021.ipynb" target="_blank"
+      <li><a href="https://github.com/Gakkykun/jb-demo/edit/main/book/GeoPython_2021.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -323,6 +323,23 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       <li><a href="../_sources/book/GeoPython_2021.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/book/GeoPython_2021.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -332,7 +349,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -468,7 +485,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-map-elements">Add map elements</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-multiple-layers">Plot multiple layers</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-custom-projections">Use custom projections</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Create timelapse animations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Create timelapse animations</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-export">Data export</a><ul class="nav section-nav flex-column">
@@ -497,6 +514,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="google-earth-engine">
 <h1>Google Earth Engine<a class="headerlink" href="#google-earth-engine" title="Permalink to this heading">#</a></h1>
+<p>This notebook is a collection of examples.</p>
 <p>This notebook was developed for the geemap workshop at the <a class="reference external" href="https://2021.geopython.net">GeoPython 2021 Conference</a>.</p>
 <p>Authors: <a class="reference external" href="https://github.com/giswqs">Qiusheng Wu</a>, <a class="reference external" href="https://github.com/KMarkert">Kel Markert</a></p>
 <p>Link to this notebook: <a class="reference external" href="https://gishub.org/geopython">https://gishub.org/geopython</a></p>
@@ -554,6 +572,13 @@ document.write(`
 <h3>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">ee</span>
 <span class="kn">import</span> <span class="nn">geemap</span>
@@ -564,6 +589,22 @@ document.write(`
 </section>
 <section id="create-an-interactive-map">
 <h3>Create an interactive map<a class="headerlink" href="#create-an-interactive-map" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Map</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+<span class="n">Map</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Map</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+<span class="n">Map</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Map</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
@@ -611,10 +652,18 @@ document.write(`
 </div>
 </div>
 </div>
+<p>For more inf, see <span class="xref std std-ref">geemap</span>.
+For more inf, see <code class="xref std std-numref docutils literal notranslate"><span class="pre">geemap</span></code>.</p>
+<p>See <span id="id1">[<a class="reference internal" href="bibliography.html#id2" title="Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In International Conference on Cognitive Neuroscience. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.">Holdgraf <em>et al.</em>, 2014</a>, <a class="reference internal" href="bibliography.html#id3" title="Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, Jochem W. Rieger, Nathan Crone, Jack J. Lin, Robert T. Knight, and Frédéric E. Theunissen. Rapid tuning shifts in human auditory cortex enhance speech intelligibility. Nature Communications, 7(May):13654, 2016. URL: http://www.nature.com/doifinder/10.1038/ncomms13654, doi:10.1038/ncomms13654.">Holdgraf <em>et al.</em>, 2016</a>]</span></p>
 </section>
 <section id="change-basemaps-without-coding">
 <h3>Change basemaps without coding<a class="headerlink" href="#change-basemaps-without-coding" title="Permalink to this heading">#</a></h3>
-<p><img alt="" src="https://i.imgur.com/PXURCSP.png" /></p>
+<figure class="align-default" id="ch01-colab">
+<a class="reference internal image-reference" href="https://i.imgur.com/PXURCSP.png"><img alt="https://i.imgur.com/PXURCSP.png" src="https://i.imgur.com/PXURCSP.png" style="width: 825px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">This is the figure caption.</span><a class="headerlink" href="#ch01-colab" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Map</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
@@ -2150,8 +2199,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="id1">
-<h3>Create timelapse animations<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<section id="id2">
+<h3>Create timelapse animations<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Map</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
@@ -2718,7 +2767,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-map-elements">Add map elements</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-multiple-layers">Plot multiple layers</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-custom-projections">Use custom projections</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Create timelapse animations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Create timelapse animations</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-export">Data export</a><ul class="nav section-nav flex-column">
