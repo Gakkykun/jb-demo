@@ -6,7 +6,7 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.14.5
 kernelspec:
-  display_name: Python 3 (ipykernel)
+  display_name: Python 3
   language: python
   name: python3
 ---
@@ -73,6 +73,7 @@ jupyter contrib nbextension install --user
 
 ```{code-cell} ipython3
 import numpy as np
+import matplotlib.pyplot as plt
 ```
 
 ```{code-cell} ipython3
@@ -124,23 +125,11 @@ for basemap in geemap.basemaps.keys():
     print(basemap)
 ```
 
-For more inf, see {ref}`geemap`.
-For more inf, see {numref}`geemap`.
-
-See {cite}`holdgraf_evidence_2014, holdgraf_rapid_2016`
-
 ### Change basemaps without coding
 
 +++
 
-
-```{figure} https://i.imgur.com/PXURCSP.png
----
-name: ch01_colab
-width: 825px
----
-This is the figure caption.
-```
+![](https://i.imgur.com/PXURCSP.png)
 
 ```{code-cell} ipython3
 Map = geemap.Map()
