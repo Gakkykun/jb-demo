@@ -1,22 +1,51 @@
 # Table of contents
 # Learn more at https://jupyterbook.org/customize/toc.html
+# chapters:
+#   - file: book/markdown
+#   - file: book/notebooks
+#   - file: book/bibliography
 
-format: jb-book
-root: index
-chapters:
-  - file: book/markdown
-  - file: book/notebooks
-  - file: book/bibliography
 
 # Or you organize the TOC by parts
 
+format: jb-book
+root: index
+parts:
+- caption: About Us
+  numbered: false
+  chapters:
+  - file: book/AboutUs/vision.md
+  - file: book/AboutUs/report.md    
+- caption: Research
+  numbered: false
+  chapters:
+  - file: book/Research/ResearchTheme.md
+  - file: book/Research/Projects.md
+- caption: Knowledge
+  numbered: false
+  chapters:
+  - file: book/Knowledge/publication.md
+  - file: book/Knowledge/dataAndTools.md
+    sections:
+    - file: book/Knowledge/DataAndTools/LakeMalombe.md
+    - file: book/Knowledge/DataAndTools/Figure3-compact.ipynb
+    - file: book/Knowledge/DataAndTools/LakeKyoga.md
+- caption: Events
+  numbered: false
+  chapters:
+  - file: book/Events/seminar.md
+  
 # parts:
-#   - caption: Chapters
-#     numbered: true
-#     maxdepth: 2
-#     chapters:
-#       - file: book/markdown
-#       - file: book/notebooks
-#   - caption: Appendices
-#     chapters:
-#       - file: book/bibliography
+# - caption: Chapters
+#   numbered: false
+#   chapters:
+#   - file: book/markdown
+#   - file: book/notebooks
+# - caption: Test
+#   numbered: false
+#   chapters:
+#   - file: book/test/test.md
+# - caption: Appendices
+#   numbered: false
+#   chapters:
+#   - file: book/bibliography
