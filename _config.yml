@@ -5,8 +5,8 @@
 
 #######################################################################################
 # Book settings
-title: Geospatial Data Science # The title of the book. Will be placed in the left navbar.
-author: Yoshihiko Inagaki # The author of the book
+title: African Inland Waters Research Network Website
+author: African Inland Waters Research Network (AIWaReN)
 copyright: "2023" # Copyright year to be placed in the footer
 logo: logo.png # A path to the book logo
 # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
