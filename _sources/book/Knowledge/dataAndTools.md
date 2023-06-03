@@ -1,5 +1,8 @@
 # Data and tools
 
+```{contents}
+```
+
 
 ## Necessary software
 1. [Visual Studio Code](https://code.visualstudio.com/)
