@@ -6,7 +6,7 @@ We hold a bimonthly online seminar, where experts on a specific field present th
 |-------|-------------------------------------------------------------------------|---------------------------------------------------------|
 |     1 | Feb 21, 2023                                         |                                                |
 | 2     | Apr 25, 2023                 |                       |
-|     3 | Jun 22, 2023                        |               |          
+|     3 | Jun 21, 2023                        |               |          
 
 
 ## The second seminar
