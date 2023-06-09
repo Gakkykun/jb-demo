@@ -1,3 +1,4 @@
+# Google Earth Engine common operations
 1. Creating a study map
 2. Getting coordinates of interest
 3. Extracting the satellite data information from a specific point

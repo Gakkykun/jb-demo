@@ -25,10 +25,12 @@ parts:
   numbered: false
   chapters:
   - file: book/Knowledge/publication.md
+    sections:
+    - file: book/Knowledge/Publication/LakeMalombe.md
+    - file: book/Knowledge/Publication/LakeKyoga.md
   - file: book/Knowledge/dataAndTools.md
     sections:
-    - file: book/Knowledge/DataAndTools/LakeMalombe.md
-    - file: book/Knowledge/DataAndTools/LakeKyoga.md
+    - file: book/Knowledge/DataAndTools/GEE-common-operations.md
 - caption: Events
   numbered: false
   chapters:

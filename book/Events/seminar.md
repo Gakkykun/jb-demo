@@ -2,13 +2,9 @@
 
 We hold a bimonthly online seminar, where experts on a specific field present their cutting-edge studies and participants actively exchange ideas.
 
-|   | Date      |  Topics presented                                                                  |
+|   | Date      |  Summary                                                              |
 |-------|-------------------------------------------------------------------------|---------------------------------------------------------|
-|     1 | Feb 21, 2023                                         |                                                |
-| 2     | Apr 25, 2023                 |                       |
+|     1 | Feb 21, 2023                                         | [Summary](./summary-for-meeting-Feb-14-2023.pdf)                                                |
+| 2     | Apr 25, 2023                 |      [Summary](./summary-of-meeting-Apr-25-2023.pdf)                 |
 |     3 | Jun 21, 2023                        |               |          
 
-
-## The second seminar
-
-## The first seminar
