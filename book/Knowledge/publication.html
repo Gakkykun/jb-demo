@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://Gakkykun.github.io/jb-demo/book/Knowledge/publication.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Data and tools" href="dataAndTools.html" />
+    <link rel="next" title="Lake Malombe Study" href="Publication/LakeMalombe.html" />
     <link rel="prev" title="Projects" href="../Research/Projects.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -161,10 +161,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Knowledge</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Publication</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="dataAndTools.html">Data and tools</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="DataAndTools/LakeMalombe.html">Lake Malombe Study</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DataAndTools/LakeKyoga.html">Lake Kyoga Study</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Publication</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Publication/LakeMalombe.html">Lake Malombe Study</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Publication/LakeKyoga.html">Lake Kyoga Study</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="dataAndTools.html">Data and tools</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="DataAndTools/GEE-common-operations.html">Google Earth Engine common operations</a></li>
 </ul>
 </li>
 </ul>
@@ -403,12 +406,19 @@ document.write(`
 <section id="lake-malombe-study">
 <h2>Lake Malombe Study<a class="headerlink" href="#lake-malombe-study" title="Permalink to this heading">#</a></h2>
 <p>See <span id="id1">[<a class="reference internal" href="../bibliography.html#id2" title="Rodgers Makwinja, Yoshihiko Inagaki, Tatsuyuki Sagawa, John Peter Obubu, Elias Habineza, and Wendy Haaziyu. Monitoring trophic status using in situ data and sentinel-2 msi algorithm: lesson from lake malombe, malawi. Environmental Science and Pollution Research, pages 1–18, 2022.">Makwinja <em>et al.</em>, 2022</a>]</span></p>
-<p>In this study, we estimated the trophic status of Lake Malombe in Malawi-a lake likely to be
-affected by eutrophication and algal bloom. We integrated in situ data with the Sentinel-2 MSI algorithm—an algorithm with two bands at the central wavelength of 665 nm or 705 nm and relatively narrow spectral bandwidth (31 nm or 15/16 nm), which corresponds to a strong absorption feature in the red and reflectance peak of chl-a (Page et al. 2018) to estimate spatial and temporal dynamics of chl-a in Lake Malombe.</p>
+<p>With excessive nutrient enrichment exacerbated by anthropogenic drivers, many standing water bodies are changing from oligotrophic to mesotrophic, eutrophic, and finally hypertrophic—negatively affecting ecosystem functioning, biodiversity,
+and human populations. Efforts have been devoted to developing novel algorithms for estimating chlorophyll-a (chl-a), cyno-blooms, and floating vegetation. However, to this date, little research has focused on freshwater lakes in the data-scarce
+Sub-Saharan African countries such as Malawi. We, therefore, estimated the trophic status of Lake Malombe in Malawi-a lake likely to be affected by eutrophication and algal bloom-emerging threats to freshwater ecosystem functioning globally—especially with the onset of climatic and anthropogenic drivers. We integrated in situ data with high-resolution Sentinel-2 Multispectral Imagery Analysis (MSI). We independently assessed the remote sensing technique using in situ data
+and tested the model at multiple stages. The scatter plot showed that most points were in the 95% confidence interval. The validation results between the measured in situ chl-a concentrations and the Sentinel-2 MSI-based chl-a retrieval had a root
+mean square error (RMSE) of 2.88 µg/L. The chl-a concentrations retrieved from MSI images were consistent with in situ data, indicating that the normalized difference chlorophyll index (NDCI) algorithm estimated chl-a concentrations in Lake
+Malombe with acceptable accuracy. Dissolved oxygen, sulfate, nitrite, soluble reactive phosphorous, total dissolved solids, and chl-a, except for temperatures from the hot-dry-season, cold-dry-windy-season,4 and rainy-season, were significantly different (P &lt; 0.05). The Sentinel-2 MSI imagery analysis also depicted similar results, with high chl-a concentration reported in March (rainy season) and October (hot-dry season) and the lowest from May to August (cold-dry-windy season). On the contrary, the ANOVA results for water quality parameters from all five points had P &gt; 0.05. The correlation matrix showed coefficients of (0.798 &lt; r &lt; 0.930, n = 30, P &lt; 0.005), suggesting that Lake Malombe is homogenous. Our results demonstrate that integrating remote sensing based on MSI imagery and in situ data to estimate chl-a can provide an effective tool for monitoring eutrophication in small, medium, and large standing waterbodies—crucial information required to respond to global ecological and climatic dynamics.</p>
 </section>
 <section id="lake-kyoga-study">
 <h2>Lake Kyoga Study<a class="headerlink" href="#lake-kyoga-study" title="Permalink to this heading">#</a></h2>
+<p>Shallow inland lakes are especially vulnerable to degradation from pollutants from natural but mainly anthropogenic activities in the catchments, a case of L. Kyoga. Chlorophyll-a is a proxy parameter that shows the trophic state of the lake, hence primary productivity. This study aimed at development of an algorithm for monitoring of primary productivity of L. Kyoga using remote sensing. Google earth engine was used to collect satellite data of the study area using Sentinel-2 Multi-Spectral Instrument (MSI) imagery. Gon’s method was used to estimate chlorophyll-a concentration using MODIS imagery and ocean colour algorithms. Chlorophyll-a maps were produced using Sentinel-2 MSI imagery using calibrated Gon’s algorithm. In situ chlorophyll-a data was collected and analyzed from 29 sampling locations in the lake according to the seasons. The results from the two major algorithms (ocean color and red-edge) evaluated to estimate chl-a concentrations in Lake Kyoga showed major differences. Ocean color, which assumes that the blue-green band ratio linearly responds to chl-a abundance was found to be suitable for relatively clear waters such as oceans or oligotrophic lakes.  The Gons algorithm (red-edge) proven to be more applicable in turbid productive waters was found reliable in L. Kyoga and was recommended for estimation of chl-a concentration. These results are very important for policy, decision makers and water managers for the designing and application of remote sensing to monitor L. Kyoga productivity, and water quality.</p>
 </section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -452,11 +462,11 @@ affected by eutrophication and algal bloom. We integrated in situ data with the 
       </div>
     </a>
     <a class="right-next"
-       href="dataAndTools.html"
+       href="Publication/LakeMalombe.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Data and tools</p>
+        <p class="prev-next-title">Lake Malombe Study</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
