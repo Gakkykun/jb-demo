@@ -365,7 +365,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -381,6 +383,20 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-coordinates-of-interest">Getting coordinates of interest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-the-satellite-data-information-from-a-specific-point">Extracting the satellite data information from a specific point</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration-validation">Calibration/validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-analysis">Error analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-time-series">Creating a time-series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#water-area-delineation">Water area delineation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-mapping-of-a-specific-variable-for-the-entire-lake-or-a-portion-of-the-lake-in-case-the-lake-size-is-beyond-the-gee-computational-capacity">Creating a mapping of a specific variable for the entire lake,  or a portion of the lake in case the lake size is beyond the GEE computational capacity.</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -393,15 +409,42 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="google-earth-engine-common-operations">
 <h1>Google Earth Engine common operations<a class="headerlink" href="#google-earth-engine-common-operations" title="Permalink to this heading">#</a></h1>
 <ol class="arabic simple">
-<li><p>Creating a study map</p></li>
 <li><p>Getting coordinates of interest</p></li>
 <li><p>Extracting the satellite data information from a specific point</p></li>
-<li><p>Creating a time-series</p></li>
-<li><p>Water area delineation (Dongquit method/ JWP database)</p></li>
-<li><p>Creating a mapping of a specific variable for the entire lake</p></li>
 <li><p>Calibration/validation</p></li>
 <li><p>Error analysis</p></li>
+<li><p>Creating a time-series</p></li>
+<li><p>Water area delineation</p></li>
+<li><p>Creating a mapping of a specific variable for the entire lake, or a portion of the lake in case the lake size is beyond the GEE computational capacity.</p></li>
 </ol>
+<section id="getting-coordinates-of-interest">
+<h2>Getting coordinates of interest<a class="headerlink" href="#getting-coordinates-of-interest" title="Permalink to this heading">#</a></h2>
+<p>A coordinate of interest can be easily obtained at the Google Earth Engine Code Editor, where a pin can be put in the map that appears in the bottom half. A new variable will be created based on the pin, and the coordinate information can be extracted from the code editor.</p>
+</section>
+<section id="extracting-the-satellite-data-information-from-a-specific-point">
+<h2>Extracting the satellite data information from a specific point<a class="headerlink" href="#extracting-the-satellite-data-information-from-a-specific-point" title="Permalink to this heading">#</a></h2>
+<p>We first need to identify which dataset should be used.
+We can extract reflectance spectra at a specific point, considering 3 × 3 neighborhood pixels centered at the point and take mean reflectance values for available wavelengths.</p>
+</section>
+<section id="calibration-validation">
+<h2>Calibration/validation<a class="headerlink" href="#calibration-validation" title="Permalink to this heading">#</a></h2>
+<p>A curve_fit function from Scipy can be used.</p>
+</section>
+<section id="error-analysis">
+<h2>Error analysis<a class="headerlink" href="#error-analysis" title="Permalink to this heading">#</a></h2>
+<p>There are different indices proposed as error metrics. They can be calculated without much efforts using Scikit-learn methods. Confusion matrix for classification problems can be also created using the library.</p>
+</section>
+<section id="creating-a-time-series">
+<h2>Creating a time-series<a class="headerlink" href="#creating-a-time-series" title="Permalink to this heading">#</a></h2>
+<p>Extracted information from satellite imagery can be converted into a Pandas dataframe, with which a time-series plotting can be done.</p>
+</section>
+<section id="water-area-delineation">
+<h2>Water area delineation<a class="headerlink" href="#water-area-delineation" title="Permalink to this heading">#</a></h2>
+<p>We can effectively obtain accurate water area using the method proposed by Donchyts et al, 2016 and the JWP database.</p>
+</section>
+<section id="creating-a-mapping-of-a-specific-variable-for-the-entire-lake-or-a-portion-of-the-lake-in-case-the-lake-size-is-beyond-the-gee-computational-capacity">
+<h2>Creating a mapping of a specific variable for the entire lake,  or a portion of the lake in case the lake size is beyond the GEE computational capacity.<a class="headerlink" href="#creating-a-mapping-of-a-specific-variable-for-the-entire-lake-or-a-portion-of-the-lake-in-case-the-lake-size-is-beyond-the-gee-computational-capacity" title="Permalink to this heading">#</a></h2>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -462,6 +505,26 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-coordinates-of-interest">Getting coordinates of interest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-the-satellite-data-information-from-a-specific-point">Extracting the satellite data information from a specific point</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration-validation">Calibration/validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-analysis">Error analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-time-series">Creating a time-series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#water-area-delineation">Water area delineation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-mapping-of-a-specific-variable-for-the-entire-lake-or-a-portion-of-the-lake-in-case-the-lake-size-is-beyond-the-gee-computational-capacity">Creating a mapping of a specific variable for the entire lake,  or a portion of the lake in case the lake size is beyond the GEE computational capacity.</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
