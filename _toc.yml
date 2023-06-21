@@ -27,6 +27,7 @@ parts:
   - file: book/Knowledge/publication.md
     sections:
     - file: book/Knowledge/Publication/LakeMalombe.md
+    - file: book/Knowledge/Publication/Lake-Malombe-notebook.md
     - file: book/Knowledge/Publication/LakeKyoga.md
   - file: book/Knowledge/dataAndTools.md
     sections:
