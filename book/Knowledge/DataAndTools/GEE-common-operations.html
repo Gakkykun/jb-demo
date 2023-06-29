@@ -225,6 +225,55 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/Gakkykun/jb-demo/master?urlpath=tree/book/Knowledge/DataAndTools/GEE-common-operations.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/Gakkykun/jb-demo/blob/master/book/Knowledge/DataAndTools/GEE-common-operations.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -294,6 +343,23 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/book/Knowledge/DataAndTools/GEE-common-operations.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
       
       
       
@@ -389,13 +455,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-coordinates-of-interest">Getting coordinates of interest</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-the-satellite-data-information-from-a-specific-point">Extracting the satellite data information from a specific point</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration-validation">Calibration/validation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-analysis">Error analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration-validation-with-error-analysis">Calibration/validation with error analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-time-series">Creating a time-series</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#water-area-delineation">Water area delineation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-mapping-of-a-specific-variable-for-the-entire-lake-or-a-portion-of-the-lake-in-case-the-lake-size-is-beyond-the-gee-computational-capacity">Creating a mapping of a specific variable for the entire lake,  or a portion of the lake in case the lake size is beyond the GEE computational capacity.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-mapping-of-a-specific-variable">Creating a mapping of a specific variable</a></li>
 </ul>
             </nav>
         </div>
@@ -410,41 +473,282 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="google-earth-engine-common-operations">
 <h1>Google Earth Engine common operations<a class="headerlink" href="#google-earth-engine-common-operations" title="Permalink to this heading">#</a></h1>
 <ol class="arabic simple">
-<li><p>Getting coordinates of interest</p></li>
 <li><p>Extracting the satellite data information from a specific point</p></li>
-<li><p>Calibration/validation</p></li>
-<li><p>Error analysis</p></li>
+<li><p>Calibration/validation with error analysis</p></li>
 <li><p>Creating a time-series</p></li>
-<li><p>Water area delineation</p></li>
-<li><p>Creating a mapping of a specific variable for the entire lake, or a portion of the lake in case the lake size is beyond the GEE computational capacity.</p></li>
+<li><p>Creating a mapping of a specific variable.</p></li>
 </ol>
-<section id="getting-coordinates-of-interest">
-<h2>Getting coordinates of interest<a class="headerlink" href="#getting-coordinates-of-interest" title="Permalink to this heading">#</a></h2>
-<p>A coordinate of interest can be easily obtained at the Google Earth Engine Code Editor, where a pin can be put in the map that appears in the bottom half. A new variable will be created based on the pin, and the coordinate information can be extracted from the code editor.</p>
-</section>
 <section id="extracting-the-satellite-data-information-from-a-specific-point">
 <h2>Extracting the satellite data information from a specific point<a class="headerlink" href="#extracting-the-satellite-data-information-from-a-specific-point" title="Permalink to this heading">#</a></h2>
-<p>We first need to identify which dataset should be used.
-We can extract reflectance spectra at a specific point, considering 3 × 3 neighborhood pixels centered at the point and take mean reflectance values for available wavelengths.</p>
+<p>We first need to identify which dataset should be used.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">startDate</span> <span class="o">=</span> <span class="s1">&#39;2019-01-01&#39;</span>
+<span class="n">endDate</span> <span class="o">=</span> <span class="s1">&#39;2019-12-30&#39;</span>
+<span class="n">sampling_point</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">([</span><span class="mf">35.238484</span><span class="p">,</span> <span class="o">-</span><span class="mf">14.618457</span><span class="p">])</span>
+
+<span class="n">Sen2ImageCollection</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2_SR&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">sampling_point</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">startDate</span><span class="p">,</span> <span class="n">endDate</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">filterMetadata</span><span class="p">(</span><span class="s1">&#39;CLOUDY_PIXEL_PERCENTAGE&#39;</span><span class="p">,</span> <span class="s1">&#39;less_than&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">cloudMasking_S2_div</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">rescaling</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can extract reflectance spectra at a specific point, considering 3 × 3 neighborhood pixels centered at the point and take mean reflectance values for available wavelengths.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Sen2Image</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2_SR&#39;</span><span class="p">)</span>\
+ <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">sampling_point</span><span class="p">)</span>\
+ <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">startDate</span><span class="p">,</span> <span class="n">endDate</span><span class="p">)</span>\
+ <span class="o">.</span><span class="n">filterMetadata</span><span class="p">(</span><span class="s1">&#39;CLOUDY_PIXEL_PERCENTAGE&#39;</span><span class="p">,</span> <span class="s1">&#39;less_than&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>\
+ <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">cloudMasking</span><span class="p">)</span>\
+ <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">rescaling</span><span class="p">)</span>\
+ <span class="o">.</span><span class="n">median</span><span class="p">()</span>\
+ <span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;reducer&#39;</span><span class="p">:</span> <span class="n">ee</span><span class="o">.</span><span class="n">Reducer</span><span class="o">.</span><span class="n">toList</span><span class="p">(),</span>
+        <span class="s1">&#39;geometry&#39;</span><span class="p">:</span><span class="n">sampling_point</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="o">.</span><span class="n">bounds</span><span class="p">(),</span>
+        <span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> 
+        <span class="s1">&#39;maxPixels&#39;</span><span class="p">:</span> <span class="mf">4e4</span><span class="p">,</span>
+        <span class="s1">&#39;bestEffort&#39;</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+
+<span class="n">msi_info</span> <span class="o">=</span> <span class="n">Sen2Image</span><span class="o">.</span><span class="n">reduceRegion</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">msi_info</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;B1&#39;</span><span class="p">,</span> <span class="s1">&#39;B2&#39;</span><span class="p">,</span><span class="s1">&#39;B3&#39;</span><span class="p">,</span> <span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="s1">&#39;B5&#39;</span><span class="p">,</span> <span class="s1">&#39;B6&#39;</span><span class="p">,</span> <span class="s1">&#39;B7&#39;</span><span class="p">,</span> <span class="s1">&#39;B8&#39;</span><span class="p">,</span> <span class="s1">&#39;B8A&#39;</span><span class="p">,</span> <span class="s1">&#39;B11&#39;</span><span class="p">]]</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;B1&#39;</span><span class="p">,</span> <span class="s1">&#39;B2&#39;</span><span class="p">,</span> <span class="s1">&#39;B3&#39;</span><span class="p">,</span> <span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="s1">&#39;B5&#39;</span><span class="p">,</span> <span class="s1">&#39;B6&#39;</span><span class="p">,</span> <span class="s1">&#39;B7&#39;</span><span class="p">,</span> <span class="s1">&#39;B8&#39;</span><span class="p">,</span> <span class="s1">&#39;B8A&#39;</span><span class="p">,</span> <span class="s1">&#39;B11&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="calibration-validation">
-<h2>Calibration/validation<a class="headerlink" href="#calibration-validation" title="Permalink to this heading">#</a></h2>
-<p>A curve_fit function from Scipy can be used.</p>
-</section>
-<section id="error-analysis">
-<h2>Error analysis<a class="headerlink" href="#error-analysis" title="Permalink to this heading">#</a></h2>
-<p>There are different indices proposed as error metrics. They can be calculated without much efforts using Scikit-learn methods. Confusion matrix for classification problems can be also created using the library.</p>
+<section id="calibration-validation-with-error-analysis">
+<h2>Calibration/validation with error analysis<a class="headerlink" href="#calibration-validation-with-error-analysis" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Sen2ImageCollection</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2_SR&#39;</span><span class="p">)</span>\
+<span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">sampling_point</span><span class="p">)</span>\
+<span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">startDate</span><span class="p">,</span> <span class="n">endDate</span><span class="p">)</span>\
+<span class="o">.</span><span class="n">filterMetadata</span><span class="p">(</span><span class="s1">&#39;CLOUDY_PIXEL_PERCENTAGE&#39;</span><span class="p">,</span> <span class="s1">&#39;less_than&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>\
+<span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">S2_BANDS</span><span class="p">)</span>\
+<span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">cloudMasking</span><span class="p">)</span>
+
+<span class="n">withChla</span> <span class="o">=</span> <span class="n">Sen2ImageCollection</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">addChla</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;Chla&#39;</span><span class="p">)</span>
+<span class="n">bounds_inlet</span> <span class="o">=</span> <span class="n">inlet</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+
+<span class="n">reduce_chla</span> <span class="o">=</span> <span class="n">create_reduce_region_function</span><span class="p">(</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="n">bounds_inlet</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="n">ee</span><span class="o">.</span><span class="n">Reducer</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="n">chla_stat_fc</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">FeatureCollection</span><span class="p">(</span><span class="n">withChla</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">reduce_chla</span><span class="p">))</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">notNull</span><span class="p">(</span><span class="n">withChla</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">bandNames</span><span class="p">()))</span>
+
+
+<span class="n">chla_dict</span> <span class="o">=</span> <span class="n">fc_to_dict</span><span class="p">(</span><span class="n">chla_stat_fc</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+<span class="n">chla_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">chla_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Convert the time field into a datetime and keep the columns of interest.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chla_df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">chla_df</span><span class="p">[</span><span class="s1">&#39;millis&#39;</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;ms&#39;</span><span class="p">)</span>
+
+<span class="n">chla_df</span> <span class="o">=</span> <span class="n">chla_df</span><span class="p">[[</span><span class="s1">&#39;Chla&#39;</span><span class="p">,</span><span class="s1">&#39;datetime&#39;</span><span class="p">]]</span>
+
+<span class="n">S_NDCI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">chla_df_w6</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                         <span class="n">chla_df_o6</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                         <span class="n">chla_df_m6</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                         <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">chla_df_i6</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">()]),</span>\
+                         <span class="n">chla_df_e6</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                         <span class="n">chla_df_w9</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                         <span class="n">chla_df_o9</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                         <span class="n">chla_df_m9</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                         <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">chla_df_i9</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">()]),</span>\
+                         <span class="n">chla_df_e9</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>\
+                        <span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chla_jun</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.1128</span><span class="p">,</span> <span class="mf">4.5416</span><span class="p">,</span> <span class="mf">3.7401</span><span class="p">,</span> <span class="mf">3.1390</span><span class="p">,</span> <span class="mf">2.6231</span><span class="p">])</span>
+<span class="n">chla_sep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">13.3576</span><span class="p">,</span> <span class="mf">6.5588</span><span class="p">,</span> <span class="mf">5.2463</span><span class="p">,</span> <span class="mf">9.3652</span><span class="p">,</span> <span class="mf">7.5128</span><span class="p">])</span>
+
+<span class="n">chla_insitu</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">chla_jun</span><span class="p">,</span> <span class="n">chla_sep</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A curve_fit function from Numpy or Scipy can be used.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">polynominal_coeff</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">S_NDCI</span><span class="p">,</span> <span class="n">chla_insitu</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">NDCI_algorithm</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">9.547</span> <span class="o">+</span> <span class="mf">104.809</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mf">431.976</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">NDCI_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">NDCI_algorithm</span><span class="p">)</span>
+<span class="n">Yhat</span> <span class="o">=</span> <span class="n">NDCI_v</span><span class="p">(</span><span class="n">S_NDCI</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">chla_insitu</span>
+
+<span class="n">d1</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">-</span> <span class="n">Yhat</span>
+<span class="n">d2</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">-</span> <span class="n">Y</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">d1</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span><span class="o">/</span><span class="n">d2</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">S_NDCI</span><span class="p">,</span> <span class="n">chla_insitu</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.125</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Satellite derived NDCI&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;In-situ Chal [$mg/m^3$]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$R^2$ = </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">S_NDCI</span><span class="p">,</span> <span class="n">chla_insitu</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Validation</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">S_NDCI_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">chla_df_w5</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                            <span class="n">chla_df_o5</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                            <span class="n">chla_df_m5</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                             <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">chla_df_i5</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">()]),</span>\
+                             <span class="n">chla_df_e5</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                             <span class="n">chla_df_w7</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                             <span class="n">chla_df_o7</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                             <span class="n">chla_df_m7</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                             <span class="n">chla_df_i7</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                         <span class="n">chla_df_w8</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                         <span class="n">chla_df_o8</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                         <span class="n">chla_df_m8</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                         <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">chla_df_i8</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">()]),</span>\
+                         <span class="n">chla_df_e8</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                         <span class="n">chla_df_w10</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                         <span class="n">chla_df_o10</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                         <span class="n">chla_df_m10</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                         <span class="n">chla_df_i10</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>\
+                         <span class="n">chla_df_e10</span><span class="p">[</span><span class="s1">&#39;NDCI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>\
+                        <span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> 
+
+<span class="n">chla_may</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.9182</span><span class="p">,</span> <span class="mf">3.6110</span><span class="p">,</span> <span class="mf">2.0985</span><span class="p">,</span> <span class="mf">2.0985</span><span class="p">,</span> <span class="mf">3.2866</span><span class="p">])</span>
+<span class="n">chla_jul</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.2195</span><span class="p">,</span> <span class="mf">4.6712</span><span class="p">,</span> <span class="mf">3.4762</span><span class="p">,</span> <span class="mf">4.2744</span><span class="p">])</span>
+<span class="n">chla_aug</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">11.1313</span><span class="p">,</span> <span class="mf">6.2017</span><span class="p">,</span> <span class="mf">8.9199</span><span class="p">,</span> <span class="mf">3.1478</span><span class="p">,</span> <span class="mf">8.7450</span><span class="p">])</span>
+<span class="n">chla_oct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">12.2135</span><span class="p">,</span> <span class="mf">9.4616</span><span class="p">,</span> <span class="mf">4.5621</span><span class="p">,</span> <span class="mf">13.3576</span><span class="p">,</span> <span class="mf">6.7654</span><span class="p">])</span>
+
+<span class="n">chla_insitu_val</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">chla_may</span><span class="p">,</span> <span class="n">chla_jul</span><span class="p">,</span> <span class="n">chla_aug</span><span class="p">,</span> <span class="n">chla_oct</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">X_sat</span> <span class="o">=</span> <span class="n">NDCI_v</span><span class="p">(</span><span class="n">S_NDCI_val</span><span class="p">)</span>
+<span class="n">Y_insitu</span> <span class="o">=</span> <span class="n">chla_insitu_val</span>
+<span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">X_sat</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">Y_insitu</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">10.5</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Satellite derived Chl-a [$mg/m^3$]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;In-situ Chl-a [$mg/m^3$]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Validation</span><span class="se">\n</span><span class="s1">RMSE = </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">rmse</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_sat</span><span class="p">[:],</span> <span class="n">Y_insitu</span><span class="p">[:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="creating-a-time-series">
 <h2>Creating a time-series<a class="headerlink" href="#creating-a-time-series" title="Permalink to this heading">#</a></h2>
 <p>Extracted information from satellite imagery can be converted into a Pandas dataframe, with which a time-series plotting can be done.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Add fitting curves.</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">chla_df_inlet</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">],</span> <span class="n">chla_df_inlet</span><span class="p">[</span><span class="s1">&#39;Chla&#39;</span><span class="p">],</span>
+           <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Chla - RS&#39;</span><span class="p">)</span>
+<span class="n">inlet_dic</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;datetime&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;2019-05-14&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-06-24&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-07-18&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-08-20&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-09-12&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-10-11&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Chla&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">2.0985</span><span class="p">,</span> <span class="mf">3.1390</span><span class="p">,</span> <span class="mf">4.2744</span><span class="p">,</span> <span class="mf">3.1478</span><span class="p">,</span> <span class="mf">9.3652</span><span class="p">,</span> <span class="mf">13.3576</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">inlet_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">inlet_dic</span><span class="p">)</span>
+<span class="n">inlet_df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">inlet_df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">])</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">inlet_df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">],</span> <span class="n">inlet_df</span><span class="p">[</span><span class="s1">&#39;Chla&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Chla - 0m&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="water-area-delineation">
-<h2>Water area delineation<a class="headerlink" href="#water-area-delineation" title="Permalink to this heading">#</a></h2>
+<section id="creating-a-mapping-of-a-specific-variable">
+<h2>Creating a mapping of a specific variable<a class="headerlink" href="#creating-a-mapping-of-a-specific-variable" title="Permalink to this heading">#</a></h2>
 <p>We can effectively obtain accurate water area using the method proposed by Donchyts et al, 2016 and the JWP database.</p>
-</section>
-<section id="creating-a-mapping-of-a-specific-variable-for-the-entire-lake-or-a-portion-of-the-lake-in-case-the-lake-size-is-beyond-the-gee-computational-capacity">
-<h2>Creating a mapping of a specific variable for the entire lake,  or a portion of the lake in case the lake size is beyond the GEE computational capacity.<a class="headerlink" href="#creating-a-mapping-of-a-specific-variable-for-the-entire-lake-or-a-portion-of-the-lake-in-case-the-lake-size-is-beyond-the-gee-computational-capacity" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gsw</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;JRC/GSW1_3/GlobalSurfaceWater&quot;</span><span class="p">)</span>
+<span class="n">occurrence</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;occurrence&#39;</span><span class="p">)</span>
+
+<span class="n">lake_kyoga_entire</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Polygon</span><span class="p">([</span>
+        <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="mf">32.4</span><span class="p">,</span> <span class="mf">1.7</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="mf">32.4</span><span class="p">,</span> <span class="mf">1.25</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="mf">33.5</span><span class="p">,</span> <span class="mf">1.25</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="mf">33.5</span><span class="p">,</span> <span class="mf">1.7</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="mf">32.4</span><span class="p">,</span> <span class="mf">1.7</span>
+            <span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">])</span>
+<span class="n">feature</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">lake_kyoga_entire</span><span class="p">,</span> <span class="p">{})</span>
+<span class="n">roi</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span>
+
+<span class="n">water_mask</span> <span class="o">=</span> <span class="n">occurrence</span><span class="o">.</span><span class="n">gt</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">roi</span><span class="p">)</span><span class="o">.</span><span class="n">selfMask</span><span class="p">()</span>
+
+<span class="n">jrc_fc</span> <span class="o">=</span> <span class="n">ras_to_vec</span><span class="p">(</span><span class="n">water_mask</span><span class="p">)</span>
+<span class="n">fc_largest</span> <span class="o">=</span> <span class="n">jrc_fc</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;area&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Sen2ImageCollection</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2_SR&#39;</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">startDate</span><span class="p">,</span> <span class="n">endDate</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">filterMetadata</span><span class="p">(</span><span class="s1">&#39;CLOUDY_PIXEL_PERCENTAGE&#39;</span><span class="p">,</span> <span class="s1">&#39;less_than&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">cloudMasking</span><span class="p">)</span>
+
+<span class="n">withWater</span> <span class="o">=</span> <span class="n">addWater</span><span class="p">(</span><span class="n">Sen2ImageCollection</span><span class="p">)</span>
+<span class="n">withWater</span> <span class="o">=</span> <span class="n">withWater</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">updatedMaskedImage</span> <span class="o">=</span> <span class="n">withWater</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">S2_BANDS_2</span><span class="p">,</span> <span class="n">S2_NAMES_2</span><span class="p">)</span>
+    
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">Chla</span> <span class="o">=</span> <span class="n">updatedMaskedImage</span><span class="o">.</span><span class="n">expression</span><span class="p">(</span><span class="n">equation</span><span class="p">,</span>    <span class="p">{</span><span class="s1">&#39;RED2&#39;</span><span class="p">:</span><span class="n">updatedMaskedImage</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;red2&#39;</span><span class="p">),</span><span class="s1">&#39;RED&#39;</span><span class="p">:</span><span class="n">updatedMaskedImage</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">),</span> <span class="s1">&#39;RED4&#39;</span><span class="p">:</span><span class="n">updatedMaskedImage</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;red4&#39;</span><span class="p">)})</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;Chla&#39;</span><span class="p">)</span>
+
+<span class="n">mask</span> <span class="o">=</span> <span class="n">withWater</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;water&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">gt</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">ChlaMask</span> <span class="o">=</span> <span class="n">Chla</span><span class="o">.</span><span class="n">updateMask</span><span class="p">(</span><span class="n">mask</span><span class="p">);</span>
+    
+<span class="n">ChlaVisParam</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;min&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+        <span class="s1">&#39;max&#39;</span><span class="p">:</span><span class="n">chla_max</span><span class="p">,</span>
+        <span class="s1">&#39;palette&#39;</span><span class="p">:[</span><span class="s1">&#39;152E13&#39;</span><span class="p">,</span> <span class="s1">&#39;183815&#39;</span><span class="p">,</span> <span class="s1">&#39;1A4216&#39;</span><span class="p">,</span> <span class="s1">&#39;1C4D17&#39;</span><span class="p">,</span> <span class="s1">&#39;1E5817&#39;</span><span class="p">,</span> <span class="s1">&#39;206416&#39;</span><span class="p">,</span> <span class="s1">&#39;237015&#39;</span><span class="p">,</span> <span class="s1">&#39;257D14&#39;</span><span class="p">,</span> <span class="s1">&#39;278A12&#39;</span><span class="p">,</span> <span class="s1">&#39;29980F&#39;</span><span class="p">,</span> <span class="s1">&#39;2BA60C&#39;</span><span class="p">,</span> <span class="s1">&#39;2EB509&#39;</span><span class="p">,</span> <span class="s1">&#39;31C405&#39;</span><span class="p">,</span> <span class="s1">&#39;34D400&#39;</span><span class="p">,</span> <span class="s1">&#39;71DD22&#39;</span><span class="p">,</span> <span class="s1">&#39;A5E544&#39;</span><span class="p">,</span> <span class="s1">&#39;D0EC66&#39;</span><span class="p">]</span>
+    <span class="p">};</span>
+
+<span class="n">region</span> <span class="o">=</span> <span class="p">[</span><span class="mf">33.5</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">32.4</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">]</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">cartoee</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="n">ChlaMask</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">fc_largest</span><span class="o">.</span><span class="n">geometry</span><span class="p">()),</span> <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> <span class="n">vis_params</span><span class="o">=</span><span class="n">ChlaVisParam</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -515,13 +819,10 @@ We can extract reflectance spectra at a specific point, considering 3 × 3 neigh
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-coordinates-of-interest">Getting coordinates of interest</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-the-satellite-data-information-from-a-specific-point">Extracting the satellite data information from a specific point</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration-validation">Calibration/validation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-analysis">Error analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration-validation-with-error-analysis">Calibration/validation with error analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-time-series">Creating a time-series</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#water-area-delineation">Water area delineation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-mapping-of-a-specific-variable-for-the-entire-lake-or-a-portion-of-the-lake-in-case-the-lake-size-is-beyond-the-gee-computational-capacity">Creating a mapping of a specific variable for the entire lake,  or a portion of the lake in case the lake size is beyond the GEE computational capacity.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-mapping-of-a-specific-variable">Creating a mapping of a specific variable</a></li>
 </ul>
   </nav></div>
 
