@@ -32,6 +32,7 @@ parts:
   - file: book/Knowledge/dataAndTools.md
     sections:
     - file: book/Knowledge/DataAndTools/GEE-common-operations.md
+    - file: book/Knowledge/DataAndTools/Figures-all-Lake-Koka.md
 - caption: Events
   numbered: false
   chapters:
